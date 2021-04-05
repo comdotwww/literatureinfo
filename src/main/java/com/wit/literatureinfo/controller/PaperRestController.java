@@ -44,10 +44,11 @@ public class PaperRestController {
      */
     @RequestMapping(value = "/api/paper", method = RequestMethod.POST, params = {"title", "limitStart", "limitEnd"})
     public Object selectPaperByTitle(String title, Integer limitStart, Integer limitEnd) {
-        // TODO: 2021/4/5
-        Paper[] paper = paperService.selectPaperByTitle(title, limitStart, limitEnd);
-
-        return ResponseObject.returnObject(paper, "paper");
+        Paper[] papers = paperService.selectPaperByTitle(title, limitStart, limitEnd);
+        if (papers.length == 0) {
+            papers = null;
+        }
+        return ResponseObject.returnObject(papers, "paper");
     }
 
     /**

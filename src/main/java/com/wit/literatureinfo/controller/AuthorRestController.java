@@ -24,6 +24,9 @@ public class AuthorRestController {
     @RequestMapping(value = "/api/author", method = RequestMethod.POST, params = "id")
     public Object selectAuthorById(double id) {
         Author[] authors = authorService.selectAuthorById(id);
+        if (authors.length == 0) {
+            authors = null;
+        }
         return ResponseObject.returnObject(authors, "author");
     }
 }

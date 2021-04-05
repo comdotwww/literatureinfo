@@ -23,6 +23,9 @@ public class TagRestController {
     @RequestMapping(value = "/api/tag", method = RequestMethod.POST, params = "id")
     public Object selectTagById(double id) {
         Tag[] tags = tagService.selectTagById(id);
+        if (tags.length == 0) {
+            tags = null;
+        }
         return ResponseObject.returnObject(tags, "tag");
     }
 
@@ -36,7 +39,7 @@ public class TagRestController {
     @RequestMapping(value = "/api/edit/tag", method = RequestMethod.POST,
             params = {"id", "oldTag", "newTag"})
     public Object updateTagById(double id, String oldTag, String newTag) {
-        Integer tags = tagService.updateTagById(id, oldTag, newTag);
-        return tags;
+        Integer affectedRows = tagService.updateTagById(id, oldTag, newTag);
+        return affectedRows;
     }
 }
