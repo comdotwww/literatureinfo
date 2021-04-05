@@ -19,4 +19,15 @@ public interface TagDao {
     @Select("SELECT `tag_name` FROM `paper_tag` WHERE `paper_id` = #{id}")
     @ResultMap(value = "tagMap")
     Tag[] selectTagById(@Param("id") double id);
+
+
+    /** 使用 paper_id 从 paper_tag 修改 tag ，返回值是此次修改影响了多少行
+     * 切记：修改数据一定要加事务！！！
+     * **/
+    @Update("UPDATE paper_tag " +
+            "SET `tag_name` = #{newTag} " +
+            "WHERE `paper_id` = #{id} and `tag_name` = #{oldTag}")
+    Integer updateTagById(@Param("id") double id ,
+                          @Param("oldTag") String oldTag,
+                          @Param("newTag") String newTag);
 }

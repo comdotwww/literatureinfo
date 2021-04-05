@@ -7,4 +7,5 @@ import com.wit.literatureinfo.domain.Tag;
  */
 public interface TagService {
     Tag[] selectTagById(double id);
+    Integer updateTagById(double id, String oldTag, String newTag);
 }

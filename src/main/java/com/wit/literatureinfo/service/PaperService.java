@@ -7,4 +7,5 @@ import com.wit.literatureinfo.domain.Paper;
  */
 public interface PaperService {
     Paper selectPaperById(double id);
+    Paper[] selectPaperByTitle(String title, Integer limitStart, Integer limitEnd);
 }

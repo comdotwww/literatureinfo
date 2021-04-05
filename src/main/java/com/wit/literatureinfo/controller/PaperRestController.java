@@ -37,16 +37,17 @@ public class PaperRestController {
 
     /**
      * 使用 title 模糊查找 paper 的 id
-     * @param title
+     * @param title     标题
      * @param limitStart    结果分页起始
      * @param limitEnd
      * @return
      */
     @RequestMapping(value = "/api/paper", method = RequestMethod.POST, params = {"title", "limitStart", "limitEnd"})
-    public Object selectPaperByTitle(String title, String limitStart, String limitEnd) {
+    public Object selectPaperByTitle(String title, Integer limitStart, Integer limitEnd) {
         // TODO: 2021/4/5
+        Paper[] paper = paperService.selectPaperByTitle(title, limitStart, limitEnd);
 
-        return title;
+        return ResponseObject.returnObject(paper, "paper");
     }
 
     /**

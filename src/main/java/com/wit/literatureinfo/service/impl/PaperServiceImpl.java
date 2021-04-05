@@ -15,4 +15,9 @@ public class PaperServiceImpl implements PaperService {
     public Paper selectPaperById(double id) {
         return paperDao.selectPaperById(id);
     }
+
+    @Override
+    public Paper[] selectPaperByTitle(String title, Integer limitStart, Integer limitEnd) {
+        return paperDao.selectPaperByTitle(title, limitStart, limitEnd);
+    }
 }

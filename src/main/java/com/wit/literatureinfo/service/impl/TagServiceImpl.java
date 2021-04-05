@@ -16,4 +16,11 @@ public class TagServiceImpl implements TagService {
     public Tag[] selectTagById(double id) {
         return tagDao.selectTagById(id);
     }
+
+    @Override
+    public Integer updateTagById(double id, String oldTag, String newTag) {
+        return tagDao.updateTagById(id, oldTag, newTag);
+    }
+
+
 }

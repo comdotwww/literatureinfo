@@ -25,4 +25,18 @@ public class TagRestController {
         Tag[] tags = tagService.selectTagById(id);
         return ResponseObject.returnObject(tags, "tag");
     }
+
+    /**
+     * 修改 tag
+     * @param id    paper 的 id
+     * @param oldTag    需要修改的旧 tag
+     * @param newTag    修改后的 tag
+     * @return
+     */
+    @RequestMapping(value = "/api/edit/tag", method = RequestMethod.POST,
+            params = {"id", "oldTag", "newTag"})
+    public Object updateTagById(double id, String oldTag, String newTag) {
+        Integer tags = tagService.updateTagById(id, oldTag, newTag);
+        return tags;
+    }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface PaperDao {
 
-    @Select({"select id, title, abstract_content, pdf_url, data from paper"})
+    @Select({"select paper_id, title, abstract_content, pdf_url, date from paper"})
     @Results(id = "paperMap", value = {
             @Result(property = "id", column = "paper_id", jdbcType = JdbcType.INTEGER, id = true),
             @Result(property = "title", column = "title", jdbcType = JdbcType.VARCHAR),
@@ -36,4 +36,9 @@ public interface PaperDao {
             "</script>")
     @ResultMap(value = "paperMap")
     Paper selectPaperById(@Param("id") double id);
+
+    /** 由 title 从 paper 查询 paper_id , 一般有 0 和 多个 **/
+    @Select("select paper_id, title, abstract_content, pdf_url, date from paper where title like CONCAT('%', #{title}, '%') limit #{limitStart},#{limitEnd}")
+    @ResultMap(value = "paperMap")
+    Paper[] selectPaperByTitle(@Param("title") String title, @Param("limitStart") Integer limitStart, @Param("limitEnd") Integer limitEnd);
 }

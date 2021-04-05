@@ -50,7 +50,7 @@ public class ResponseObject {
      * @return
      */
     public static Object returnObject(Object obj, String name) {
-        if (obj != null) {
+        if (obj != null ) {
             Map<String, Object> maps = new HashMap<>();
             String message = ResponseEnum.GET_SUCCESS.getMessage();
             Integer code = ResponseEnum.GET_SUCCESS.getCode();
