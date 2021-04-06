@@ -15,9 +15,15 @@ public interface AuthorDao {
     })
     List<Author> selectAll();
 
-    /** 使用 paper_id 从 paper_author 获取 author_name ，一般不少于 1 个 **/
+    /**
+     * 使用 paper_id 从 paper_author 获取 author_name ，一般不少于 1 个
+     * @param id  paper 的 id
+     * @return
+     */
     @Select("SELECT `author_name` FROM `paper_author` WHERE `paper_id` = #{id}")
     @ResultMap(value = "authorMap")
     Author[] selectAuthorById(@Param("id") double id);
+
+
 
 }

@@ -18,6 +18,7 @@
         <mybatis-spring-boot>1.2.0</mybatis-spring-boot>
         <mysql-connector>8.0.23</mysql-connector>
         <druid>1.1.21</druid>
+        <log4j-core>2.13.3</log4j-core>
     </properties>
     <dependencies>
         <dependency>
@@ -57,6 +58,13 @@
             <artifactId>druid</artifactId>
             <version>${druid}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j-core}</version>
+        </dependency>
+
 
     </dependencies>
 
