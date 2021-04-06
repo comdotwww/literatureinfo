@@ -201,8 +201,13 @@ public class PaperRestController {
 
     /**
      * 增加 paper
-     * @param id    paper 的 id
-     * @param tag
+     * @param id    id
+     * @param title     标题
+     * @param author    作者
+     * @param tag       标签
+     * @param abstractContent   摘要
+     * @param url   pdf 链接
+     * @param date  日期
      * @return
      */
     @RequestMapping(value = "/api/add",

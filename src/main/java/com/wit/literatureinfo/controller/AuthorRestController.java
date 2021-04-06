@@ -49,7 +49,7 @@ public class AuthorRestController {
     /**
      * 删除某个 author
      * @param id    paper 的 id
-     * @param author
+     * @param author    作者
      * @return
      */
     @RequestMapping(value = "/api/delete",
@@ -65,7 +65,7 @@ public class AuthorRestController {
     /**
      * 增加 author
      * @param id    paper 的 id
-     * @param author
+     * @param author    作者
      * @return
      */
     @RequestMapping(value = "/api/add",

@@ -55,7 +55,7 @@ public class TagRestController {
     /**
      * 删除某个 tag
      * @param id    paper 的 id
-     * @param tag
+     * @param tag   标签
      * @return
      */
     @RequestMapping(value = "/api/delete",
@@ -71,7 +71,7 @@ public class TagRestController {
     /**
      * 增加 tag
      * @param id    paper 的 id
-     * @param tag
+     * @param tag   标签
      * @return
      */
     @RequestMapping(value = "/api/add",
