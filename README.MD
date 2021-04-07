@@ -1,3 +1,45 @@
+# 介绍
+从文献网站 http://www.arxiv-sanity.com/ 爬取文献信息保存到数据库，
+用户可以在网页上浏览最新的文献，
+另外用户还可以根据论文的题目，作者，标签等查询论文。
+![](source.png)
+
+> 我主要负责后端接口（ API ）的实现
+
+# 数据库设计
+## paper表
+| 字段 | 类型 | 描述 |
+| --- | --- | --- |
+| paper_id（主键） | varchar | 论文的id |
+| title | varchar | 论文标题 |
+| abstract_content | TEXT | 论文摘要内容 |
+| pdf_url | varchar | PDF地址 |
+| date | Date | 论文日期 |
+
+## paper-author表
+
+| 字段 | 类型 | 描述 |
+| --- | --- | --- |
+| paper_id | varchar | 论文id |
+| author_name | varchar | 作者id |
+| record_id | bigint | 主键 |
+
+## paper-tag表
+| 字段 | 类型 | 描述 |
+| --- | --- | --- |
+| paper_id | varchar | 论文id |
+| tag_name | varchar | tag name |
+| record_id | bigint | 主键 |
+
+## user表
+
+| 字段 | 类型 | 描述 |
+| --- | --- | --- |
+| user_id | int | 用户id(主键) |
+| role_id | int | 角色id |
+| user_name | varchar | 用户名称 |
+| password | varchar | 用户密码 |
+
 # API（精确查询）
 > 状态码
 
