@@ -84,8 +84,35 @@ public class PaperServiceImpl implements PaperService {
         return paperDao.updateUrlById(id, newUrl);
     }
 
+    /**
+     * 设置出现异常回滚, 默认情况下，spring 会对 unchecked 异常进行事务回滚；如果是 checked 异常则不回滚
+     * Java 里面将派生于 Error 或者 RuntimeException （比如空指针，1/0）的异常称为unchecked异常，
+     * 其他继承自 java.lang.Exception 的异常统称为 Checked Exception，如 IOException、TimeoutException 等
+     * @param id
+     * @param newDate
+     * @return
+     */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Integer updateDateById(double id, String newDate) {
         return paperDao.updateDateById(id, newDate);
+    }
+
+    /**
+     * 设置出现异常回滚, 默认情况下，spring 会对 unchecked 异常进行事务回滚；如果是 checked 异常则不回滚
+     * Java 里面将派生于 Error 或者 RuntimeException （比如空指针，1/0）的异常称为unchecked异常，
+     * 其他继承自 java.lang.Exception 的异常统称为 Checked Exception，如 IOException、TimeoutException 等
+     * @param id
+     * @return
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Integer deletePaperById(double id) {
+        return paperDao.deletePaperById(id);
+    }
+
+    @Override
+    public Integer addPaperById(double id, String title, String abstractContent, String url, String date) {
+        return paperDao.addPaperById(id, title, abstractContent, url, date);
     }
 }

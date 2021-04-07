@@ -23,6 +23,7 @@ public class PaperRestController {
     @Autowired
     private TagService tagService;
 
+
     public static final Logger LOGGER = LogManager.getLogger(TagRestController.class);
 
     /**
@@ -216,9 +217,33 @@ public class PaperRestController {
     @RequestMapping(value = "/api/delete",
             method = RequestMethod.POST,
             params = {"id"})
-    public Object deleteTagById(double id) {
+    public Object deletePaperById(double id) {
         Integer affectedRows = 0;
-        // TODO: 2021/4/6
+        // 出现异常需要事务回滚
+        try{
+            // delete tag
+            Tag[] tags = tagService.selectTagById(id);
+            if (tags.length != 0) {
+                for (Tag tag:tags) {
+                    affectedRows = affectedRows + tagService.deleteTagById(id, tag.getName());
+                }
+            }
+
+            // delete author
+            Author[] authors = authorService.selectAuthorById(id);
+            if (authors.length != 0) {
+                for (Author author:authors) {
+                    affectedRows = affectedRows + authorService.deleteAuthorById(id, author.getName());
+                }
+            }
+
+            // delete paper
+            affectedRows = affectedRows + paperService.deletePaperById(id);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("paper 删除失败", e);
+        }
 
         return ResponseObject.returnDeleteObject(affectedRows,"affectedPaperRows");
     }
@@ -237,11 +262,30 @@ public class PaperRestController {
     @RequestMapping(value = "/api/add",
             method = RequestMethod.POST,
             params = {"id", "title", "author", "tag", "abstractContent", "url", "date"})
-    public Object addTagById(double id, String title, String author, String tag, String abstractContent, String url, String date) {
+    public Object addPaperById(double id, String title, String author, String tag, String abstractContent, String url, String date) {
         Integer affectedRows = 0;
-        // TODO: 2021/4/6
+        // 出现异常需要事务回滚
+        try{
+            // 增加 id 下 paper
+            // 测试 paper 是否有重复的
+            Paper paper = paperService.selectPaperById(id);
+            if (paper != null) {
+                return ResponseObject.returnAddObject(affectedRows,"affectedPaperRows");
+            }
+            affectedRows = affectedRows + paperService.addPaperById(id, title, abstractContent, url, date);
 
-        return ResponseObject.returnAddObject(affectedRows,"affectedTitleRows");
+            // 增加 id 下 paper_tag
+            affectedRows = affectedRows + tagService.addTagById(id, tag);
+
+            // 增加 id 下 paper_author
+            affectedRows = affectedRows + authorService.addAuthorById(id, author);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("tag 添加失败", e);
+        }
+
+        return ResponseObject.returnAddObject(affectedRows,"affectedPaperRows");
     }
 
 }

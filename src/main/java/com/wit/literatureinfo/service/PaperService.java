@@ -26,4 +26,8 @@ public interface PaperService {
     Integer updateUrlById(double id, String newUrl);
 
     Integer updateDateById(double id, String newDate);
+
+    Integer deletePaperById(double id);
+
+    Integer addPaperById(double id, String title, String abstractContent, String url, String date);
 }

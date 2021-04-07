@@ -150,4 +150,11 @@ public interface PaperDao {
 
     @Update("UPDATE `paper` SET `date` = #{newDate} WHERE `paper_id` = #{id} ")
     Integer updateDateById(double id, String newDate);
+
+    @Delete("delete from `paper` where `paper_id` = #{id} ")
+    Integer deletePaperById(double id);
+
+    @Insert("insert into paper (paper_id, title, abstract_content, pdf_url, date) " +
+            "values (#{id}, #{title}, #{abstractContent}, #{url}, #{date}) ")
+    Integer addPaperById(double id, String title, String abstractContent, String url, String date);
 }

@@ -66,7 +66,20 @@ public class AuthorRestController {
             params = {"id", "author"})
     public Object deleteAuthorById(double id, String author) {
         Integer affectedRows = 0;
-        // TODO: 2021/4/6
+        // 出现异常需要事务回滚
+        try{
+            Author[] authors = authorService.selectAuthorById(id);
+            for (Author author1:authors) {
+                if (author.equals(author1.getName())){
+                    return ResponseObject.returnDeleteObject(affectedRows,"affectedAuthorRows");
+                }
+            }
+
+            affectedRows = authorService.deleteAuthorById(id, author);
+        }catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("author 删除失败", e);
+        }
 
         return ResponseObject.returnDeleteObject(affectedRows,"affectedAuthorRows");
     }
@@ -82,7 +95,20 @@ public class AuthorRestController {
             params = {"id", "author"})
     public Object addAuthorById(double id, String author) {
         Integer affectedRows = 0;
-        // TODO: 2021/4/6
+        // 出现异常需要事务回滚
+        try{
+            Author[] authors = authorService.selectAuthorById(id);
+            for (Author author1:authors) {
+                if (author.equals(author1.getName())){
+                    return ResponseObject.returnAddObject(affectedRows,"affectedAuthorRows");
+                }
+            }
+
+            affectedRows = authorService.addAuthorById(id, author);
+        }catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("author 添加失败", e);
+        }
 
         return ResponseObject.returnAddObject(affectedRows,"affectedAuthorRows");
     }

@@ -47,7 +47,7 @@ public class TagRestController {
             affectedRows = tagService.updateTagById(id, oldTag, newTag);
         }catch (Exception e) {
             e.printStackTrace();
-            LOGGER.error("tag修改失败", e);
+            LOGGER.error("tag 修改失败", e);
         }
         return ResponseObject.returnUpdateObject(affectedRows,"affectedTagRows");
     }
@@ -63,7 +63,21 @@ public class TagRestController {
             params = {"id", "tag"})
     public Object deleteTagById(double id, String tag) {
         Integer affectedRows = 0;
-        // TODO: 2021/4/6
+        // 出现异常需要事务回滚
+        try{
+            // 测试tag是否有重复的
+            Tag[] tags = tagService.selectTagById(id);
+            for (Tag tagTemp:tags) {
+                if (tag.equals(tagTemp.getName())){
+                    return ResponseObject.returnDeleteObject(affectedRows,"affectedTagRows");
+                }
+            }
+
+            affectedRows = tagService.deleteTagById(id, tag);
+        }catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("tag 删除失败", e);
+        }
 
         return ResponseObject.returnDeleteObject(affectedRows,"affectedTagRows");
     }
@@ -79,7 +93,21 @@ public class TagRestController {
             params = {"id", "tag"})
     public Object addTagById(double id, String tag) {
         Integer affectedRows = 0;
-        // TODO: 2021/4/6
+        // 出现异常需要事务回滚
+        try{
+            // 测试tag是否有重复的
+            Tag[] tags = tagService.selectTagById(id);
+            for (Tag tagTemp:tags) {
+                if (tag.equals(tagTemp.getName())){
+                    return ResponseObject.returnAddObject(affectedRows,"affectedTagRows");
+                }
+            }
+
+            affectedRows = tagService.addTagById(id, tag);
+        }catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("tag 添加失败", e);
+        }
 
         return ResponseObject.returnAddObject(affectedRows,"affectedTagRows");
     }

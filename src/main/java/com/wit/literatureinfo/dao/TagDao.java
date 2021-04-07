@@ -39,4 +39,10 @@ public interface TagDao {
     Integer updateTagById(@Param("id") double id ,
                           @Param("oldTag") String oldTag,
                           @Param("newTag") String newTag);
+
+    @Delete("delete from `paper_tag` where `paper_id` = #{id} and `tag_name` = #{tag} ")
+    Integer deleteTagById(double id, String tag);
+
+    @Insert("insert into paper_tag (paper_id, tag_name) values (#{id}, #{tag} ) ")
+    Integer addTagById(double id, String tag);
 }

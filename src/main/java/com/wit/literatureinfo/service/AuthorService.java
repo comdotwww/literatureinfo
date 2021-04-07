@@ -10,4 +10,8 @@ public interface AuthorService {
     Author[] selectAuthorById(double id);
 
     Integer updateAuthorById(double id, String oldAuthor, String newAuthor);
+
+    Integer deleteAuthorById(double id, String author);
+
+    Integer addAuthorById(double id, String author);
 }

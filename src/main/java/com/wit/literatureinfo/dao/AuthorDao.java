@@ -29,4 +29,10 @@ public interface AuthorDao {
             "SET `author_name` = #{newAuthor} " +
             "WHERE `paper_id` = #{id} and `author_name` = #{oldAuthor}")
     Integer updateAuthorById(double id, String oldAuthor, String newAuthor);
+
+    @Delete("delete from paper_author where paper_id = #{id} and author_name = #{author} ")
+    Integer deleteAuthorById(double id, String author);
+
+    @Insert("insert into paper_author (paper_id, author_name) values (#{id}, #{author}) ")
+    Integer addAuthorById(double id, String author);
 }
