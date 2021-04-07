@@ -71,7 +71,7 @@ public class TagRestController {
     /**
      * 增加 tag
      * @param id    paper 的 id
-     * @param tag   标签
+     * @param tag   新标签
      * @return
      */
     @RequestMapping(value = "/api/add",

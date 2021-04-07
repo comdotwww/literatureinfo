@@ -635,3 +635,191 @@
 ```
 
 # API（删除）
+## tag----id
+### 基本说明
+| 接口地址 | http://localhost:8080/api/delete              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/delete?id=2104.00683&tag=cs.CV |
+
+### 请求参数说明
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| id   | double  | 是  | paper 的 id |
+| tag   | String  | 是  | 标签(精确) |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedTagRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+  "code": 217,
+  "message": "数据删除成功",
+  "affectedTagRows": 1
+}
+```
+
+## author----id
+### 基本说明
+| 接口地址 | http://localhost:8080/api/delete              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/delete?id=2104.00683&author=Ye Yuan |
+
+### 请求参数说明
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| id   | double  | 是  | paper 的 id |
+| author   | String  | 是  | 作者(精确) |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedAuthorRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+  "code": 217,
+  "message": "数据删除成功",
+  "affectedAuthorRows": 1
+}
+```
+
+## paper----id
+### 基本说明
+| 接口地址 | http://localhost:8080/api/delete              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/delete?id=2104.00683 |
+
+### 请求参数说明
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| id   | double  | 是  | paper 的 id |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedPaperRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+  "code": 217,
+  "message": "数据删除成功",
+  "affectedPaperRows": 5
+}
+```
+
+# API（添加）
+## tag----id
+### 基本说明
+| 接口地址 | http://localhost:8080/api/add              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/add?id=2104.00683&tag=Tom |
+
+### 请求参数说明
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| id   | double  | 是  | paper 的 id |
+| tag   | String  | 是  | 新标签 |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedTagRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+  "code": 215,
+  "message": "数据添加成功",
+  "affectedTagRows": 1
+}
+```
+
+## author----id
+### 基本说明
+| 接口地址 | http://localhost:8080/api/add              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/add?id=2104.00683&author=Tom |
+
+### 请求参数说明
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| id   | double  | 是  | paper 的 id |
+| author   | String  | 是  | 新作者 |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedAuthorRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+  "code": 215,
+  "message": "数据添加成功",
+  "affectedAuthorRows": 1
+}
+```
+
+## paper----id
+### 基本说明
+| 接口地址 | http://localhost:8080/api/add              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/add?id=2104.00683&title=Java&author=Tom&tag=cs.CV&abstractContent=ThisIsAbstract&url=http://example.com&date=2021-04-07 |
+
+### 请求参数说明
+> 注意：若添加 paper 有多个 tag 、多个 author 时
+> 将第二个开始的 tag/author 
+> 用 add ----> tag 和 add ----> author 接口
+
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| id   | double  | 是  | paper 的 id |
+| title   | String  | 是  | 标题 |
+| author   | String  | 是  | 作者 |
+| tag   | String  | 是  | 标签 |
+| abstractContent   | String  | 是  | 摘要 |
+| url   | String  | 是  | PDF链接 |
+| date   | String  | 是  | 日期 |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedPaperRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+  "code": 215,
+  "message": "数据添加成功",
+  "affectedPaperRows": 7
+}
+```

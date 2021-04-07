@@ -220,7 +220,7 @@ public class PaperRestController {
         Integer affectedRows = 0;
         // TODO: 2021/4/6
 
-        return ResponseObject.returnDeleteObject(affectedRows,"affectedTitleRows");
+        return ResponseObject.returnDeleteObject(affectedRows,"affectedPaperRows");
     }
 
     /**

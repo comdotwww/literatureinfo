@@ -68,7 +68,7 @@ public class AuthorRestController {
         Integer affectedRows = 0;
         // TODO: 2021/4/6
 
-        return ResponseObject.returnDeleteObject(affectedRows,"affectedTagRows");
+        return ResponseObject.returnDeleteObject(affectedRows,"affectedAuthorRows");
     }
 
     /**
@@ -84,7 +84,7 @@ public class AuthorRestController {
         Integer affectedRows = 0;
         // TODO: 2021/4/6
 
-        return ResponseObject.returnAddObject(affectedRows,"affectedTagRows");
+        return ResponseObject.returnAddObject(affectedRows,"affectedAuthorRows");
     }
 
 }
