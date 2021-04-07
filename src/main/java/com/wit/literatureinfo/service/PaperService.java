@@ -9,13 +9,13 @@ public interface PaperService {
 
     Paper selectPaperById(double id);
 
-    Paper[] selectPaperByTitle(String title, Integer limitStart, Integer limitEnd);
+    Double[] selectPaperByTitle(String title, Integer limitStart, Integer limitEnd);
 
     Double[] selectPaperByAuthor(String author, Integer limitStart, Integer limitEnd);
 
-    Paper[] selectPaperByTagDate(String tag, String date, Integer limitStart, Integer limitEnd);
+    Double[] selectPaperByTagDate(String tag, String date, Integer limitStart, Integer limitEnd);
 
-    Paper[] selectPaperByTagTitle(String tag, String title, Integer limitStart, Integer limitEnd);
+    Double[] selectPaperByTagTitle(String tag, String title, Integer limitStart, Integer limitEnd);
 
     Double[] selectPaperByTag(String tag, Integer limitStart, Integer limitEnd);
 

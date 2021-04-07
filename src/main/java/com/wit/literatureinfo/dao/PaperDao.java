@@ -49,8 +49,8 @@ public interface PaperDao {
      * @return
      */
     @Select("<script> " +
-            "select * from (" +
-            "   select paper_id, title, abstract_content, pdf_url, date " +
+            "select paper_id from (" +
+            "   select paper_id, date " +
             "   from paper " +
             "   <where> " +
             "       <choose>" +
@@ -66,8 +66,7 @@ public interface PaperDao {
             ") t " +
             "order by t.date desc" +
             "</script>")
-    @ResultMap(value = "paperMap")
-    Paper[] selectPaperByTitle(@Param("title") String title,
+    Double[] selectPaperByTitle(@Param("title") String title,
                                @Param("limitStart") Integer limitStart,
                                @Param("limitEnd") Integer limitEnd);
 
@@ -98,15 +97,14 @@ public interface PaperDao {
      * @return
      */
     @Select("select * from ( " +
-            "   select paper_id, title, abstract_content, pdf_url, date " +
+            "   select paper_id " +
             "   from `paper` where `paper`.`paper_id` in " +
             "   ( " +
             "       select `paper_tag`.`paper_id` from `paper_tag` where `tag_name` = #{tag} ) " +
             "       and `paper`.`date` = #{date} limit #{limitStart},#{limitEnd}" +
             "   ) t " +
             "order by t.paper_id DESC" )
-    @ResultMap(value = "paperMap")
-    Paper[] selectPaperByTagDate(@Param("tag") String tag,
+    Double[] selectPaperByTagDate(@Param("tag") String tag,
                                  @Param("date") String date,
                                  @Param("limitStart") Integer limitStart,
                                  @Param("limitEnd") Integer limitEnd);
@@ -119,16 +117,15 @@ public interface PaperDao {
      * @param limitEnd  结果分页末
      * @return
      */
-    @Select("select * from " +
+    @Select("select paper_id from " +
             "(" +
-            "   select paper_id, title, abstract_content, pdf_url, date from paper where title like CONCAT('%',#{title},'%') and paper_id in  " +
+            "   select paper_id, date from paper where title like CONCAT('%',#{title},'%') and paper_id in  " +
             "   ( " +
             "       select  paper_id from paper_tag where tag_name = #{tag} " +
             "   ) " +
             ")t " +
             "order by t.date DESC limit #{limitStart},#{limitEnd} ")
-    @ResultMap(value = "paperMap")
-    Paper[] selectPaperByTagTitle(String tag, String title, Integer limitStart, Integer limitEnd);
+    Double[] selectPaperByTagTitle(String tag, String title, Integer limitStart, Integer limitEnd);
 
     @Select("select * from " +
             "( " +

@@ -18,7 +18,7 @@ public class PaperServiceImpl implements PaperService {
     }
 
     @Override
-    public Paper[] selectPaperByTitle(String title, Integer limitStart, Integer limitEnd) {
+    public Double[] selectPaperByTitle(String title, Integer limitStart, Integer limitEnd) {
         return paperDao.selectPaperByTitle(title, limitStart, limitEnd);
     }
 
@@ -28,12 +28,12 @@ public class PaperServiceImpl implements PaperService {
     }
 
     @Override
-    public Paper[] selectPaperByTagDate(String tag, String date, Integer limitStart, Integer limitEnd) {
+    public Double[] selectPaperByTagDate(String tag, String date, Integer limitStart, Integer limitEnd) {
         return paperDao.selectPaperByTagDate(tag, date, limitStart, limitEnd);
     }
 
     @Override
-    public Paper[] selectPaperByTagTitle(String tag, String title, Integer limitStart, Integer limitEnd) {
+    public Double[] selectPaperByTagTitle(String tag, String title, Integer limitStart, Integer limitEnd) {
         return paperDao.selectPaperByTagTitle(tag, title, limitStart, limitEnd);
     }
 
