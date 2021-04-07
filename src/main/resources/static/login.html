@@ -62,11 +62,7 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Login</p>
-        <div v-if="error" class="alert alert-danger alert-dismissible">
-            <h4 style="margin-bottom: 0px;"><i class="fa fa-exclamation-triangle"></i> {{errorMsg}}</h4>
-        </div>
-
+        <p class="login-box-msg Login">Login</p>
         <div class="form-group has-feedback">
             <input type="text" class="form-control" v-model="loginForm.username" placeholder="Username">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -127,7 +123,6 @@
                 username:'',
                 password:''
             },
-            error:false,
         },
         beforeCreate: function(){
             if(self != top){
@@ -157,7 +152,6 @@
                             if(result.code == 0){//登录成功
                                 window.location.href ='index.html';
                             }else{
-                                vm.error = true;
                                 alert("用户名或密码错误!");
                                 location.reload();
                             }
