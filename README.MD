@@ -450,3 +450,188 @@
     "message": "数据获取成功"
 }
 ```
+
+# API（修改）
+##  author----id
+### 基本说明
+| 接口地址 | http://localhost:8080/api/edit              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/edit?id=2104.00683&oldAuthor=Ye Yuan&newAuthor=Tom |
+
+### 请求参数说明
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| id   | double  | 是  | paper 的 id |
+| oldAuthor   | String  | 是  | 旧作者名(精确) |
+| newAuthor   | String  | 是  | 新作者名(精确) |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedAuthorRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+    "affectedAuthorRows": 1,
+    "code": 213,
+    "message": "数据修改成功"
+}
+```
+
+##  tag----id
+### 基本说明
+| 接口地址 | http://localhost:8080/api/edit              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/edit?id=2104.00683&oldTag=cs.CV&newTag=cs.Tom |
+
+### 请求参数说明
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| id   | double  | 是  | paper 的 id |
+| oldTag   | String  | 是  | 旧标签名(精确) |
+| newTag   | String  | 是  | 新标签名(精确) |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedTagRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+    "affectedTagRows": 1,
+    "code": 213,
+    "message": "数据修改成功"
+}
+```
+
+##  title----id
+### 基本说明
+| 接口地址 | http://localhost:8080/api/edit              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/edit?id=2104.00683&title=Tom |
+
+### 请求参数说明
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| id   | double  | 是  | paper 的 id |
+| title   | String  | 是  | 新标题名(精确) |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedTitleRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+  "code": 213,
+  "affectedTitleRows": 1,
+  "message": "数据修改成功"
+}
+```
+
+## abstract----id
+### 基本说明
+| 接口地址 | http://localhost:8080/api/edit              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/edit?id=2104.00683&newAbstract=Tom |
+
+### 请求参数说明
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| id   | double  | 是  | paper 的 id |
+| newAbstract   | String  | 是  | 新摘要(精确) |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedTitleRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+  "code": 213,
+  "message": "数据修改成功",
+  "affectedAbstractRows": 1
+}
+```
+
+## url----id
+### 基本说明
+| 接口地址 | http://localhost:8080/api/edit              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/edit?id=2104.00683&newUrl=http://example.com |
+
+### 请求参数说明
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| id   | double  | 是  | paper 的 id |
+| newUrl   | String  | 是  | 新PDF链接(精确) |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedUrlRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+  "code": 213,
+  "message": "数据修改成功",
+  "affectedUrlRows": 1
+}
+```
+
+## date----id
+### 基本说明
+| 接口地址 | http://localhost:8080/api/edit              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/edit?id=2104.00683&newDate=2021-04-07 |
+
+### 请求参数说明
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| id   | double  | 是  | paper 的 id |
+| newDate   | String  | 是  | 新日期(精确) |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedDateRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+  "code": 213,
+  "message": "数据修改成功",
+  "affectedDateRows": 1
+}
+```
+
+# API（删除）

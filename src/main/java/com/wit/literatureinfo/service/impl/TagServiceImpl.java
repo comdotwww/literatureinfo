@@ -19,7 +19,7 @@ public class TagServiceImpl implements TagService {
     }
 
     /**
-     * 设置出现什么异常回滚, 默认情况下，spring 会对 unchecked 异常进行事务回滚；如果是 checked 异常则不回滚
+     * 设置出现异常回滚, 默认情况下，spring 会对 unchecked 异常进行事务回滚；如果是 checked 异常则不回滚
      * Java 里面将派生于 Error 或者 RuntimeException （比如空指针，1/0）的异常称为unchecked异常，
      * 其他继承自 java.lang.Exception 的异常统称为 Checked Exception，如 IOException、TimeoutException 等
      * @param id

@@ -8,4 +8,6 @@ import com.wit.literatureinfo.domain.Author;
  */
 public interface AuthorService {
     Author[] selectAuthorById(double id);
+
+    Integer updateAuthorById(double id, String oldAuthor, String newAuthor);
 }

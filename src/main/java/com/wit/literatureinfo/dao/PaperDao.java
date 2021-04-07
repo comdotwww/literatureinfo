@@ -138,4 +138,16 @@ public interface PaperDao {
             ")t " +
             "order by t.paper_id DESC limit #{limitStart},#{limitEnd} ")
     Double[] selectPaperByTag(String tag, Integer limitStart, Integer limitEnd);
+
+    @Update("UPDATE `paper` SET `title` = #{title} WHERE `paper_id` = #{id} ")
+    Integer updateTitleById(double id, String title);
+
+    @Update("UPDATE `paper` SET `abstract_content` = #{newAbstract} WHERE `paper_id` = #{id} ")
+    Integer updateAbstractById(double id, String newAbstract);
+
+    @Update("UPDATE `paper` SET `pdf_url` = #{newUrl} WHERE `paper_id` = #{id} ")
+    Integer updateUrlById(double id, String newUrl);
+
+    @Update("UPDATE `paper` SET `date` = #{newDate} WHERE `paper_id` = #{id} ")
+    Integer updateDateById(double id, String newDate);
 }

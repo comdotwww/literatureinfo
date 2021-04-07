@@ -4,6 +4,8 @@ import com.wit.literatureinfo.domain.Author;
 import com.wit.literatureinfo.service.AuthorService;
 import com.wit.literatureinfo.service.PaperService;
 import com.wit.literatureinfo.service.TagService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +17,8 @@ public class AuthorRestController {
 
     @Autowired
     private AuthorService authorService;
+
+    public static final Logger LOGGER = LogManager.getLogger(TagRestController.class);
 
     /**
      * 使用 paper 的 id 精确查找 author name
@@ -41,9 +45,14 @@ public class AuthorRestController {
             params = {"id", "oldAuthor", "newAuthor"})
     public Object updateAuthorById(double id, String oldAuthor, String newAuthor) {
         Integer affectedRows = 0;
-        // TODO: 2021/4/6
-
-        return ResponseObject.returnUpdateObject(affectedRows,"affectedTagRows");
+        // 出现异常需要事务回滚
+        try{
+            affectedRows = authorService.updateAuthorById(id, oldAuthor, newAuthor);
+        }catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("author 修改失败", e);
+        }
+        return ResponseObject.returnUpdateObject(affectedRows,"affectedAuthorRows");
     }
 
     /**

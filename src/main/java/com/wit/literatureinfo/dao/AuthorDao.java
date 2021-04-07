@@ -25,5 +25,8 @@ public interface AuthorDao {
     Author[] selectAuthorById(@Param("id") double id);
 
 
-
+    @Update("UPDATE paper_author " +
+            "SET `author_name` = #{newAuthor} " +
+            "WHERE `paper_id` = #{id} and `author_name` = #{oldAuthor}")
+    Integer updateAuthorById(double id, String oldAuthor, String newAuthor);
 }

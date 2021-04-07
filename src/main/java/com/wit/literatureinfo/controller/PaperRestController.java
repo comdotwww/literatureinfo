@@ -6,6 +6,8 @@ import com.wit.literatureinfo.domain.Tag;
 import com.wit.literatureinfo.service.AuthorService;
 import com.wit.literatureinfo.service.PaperService;
 import com.wit.literatureinfo.service.TagService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +22,8 @@ public class PaperRestController {
     private AuthorService authorService;
     @Autowired
     private TagService tagService;
+
+    public static final Logger LOGGER = LogManager.getLogger(TagRestController.class);
 
     /**
      * 使用 paper 的 id 精确查找 paper
@@ -123,65 +127,85 @@ public class PaperRestController {
     /**
      * 修改 paper title
      * @param id        paper 的 id
-     * @param oldTitle    需要修改的旧 title
-     * @param newTitle    修改后的新 title
+     * @param title    修改后的新 title
      * @return
      */
     @RequestMapping(value = "/api/edit", method = RequestMethod.POST,
-            params = {"id", "oldTitle", "newTitle"})
-    public Object updateTitleById(double id, String oldTitle, String newTitle) {
+            params = {"id", "title"})
+    public Object updateTitleById(double id, String title) {
         Integer affectedRows = 0;
-        // TODO: 2021/4/6
+        // 出现异常需要事务回滚
+        try{
+            affectedRows = paperService.updateTitleById(id, title);
+        }catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("title 修改失败", e);
+        }
 
-        return ResponseObject.returnUpdateObject(affectedRows,"affectedTagRows");
+        return ResponseObject.returnUpdateObject(affectedRows,"affectedTitleRows");
     }
 
     /**
      * 修改 paper abstract_content
      * @param id        paper 的 id
-     * @param oldAbstract    需要修改的旧 abstract
      * @param newAbstract    修改后的新 abstract
      * @return
      */
     @RequestMapping(value = "/api/edit", method = RequestMethod.POST,
-            params = {"id", "oldAbstract", "newAbstract"})
-    public Object updateAbstractById(double id, String oldAbstract, String newAbstract) {
+            params = {"id", "newAbstract"})
+    public Object updateAbstractById(double id, String newAbstract) {
         Integer affectedRows = 0;
-        // TODO: 2021/4/6
+        // 出现异常需要事务回滚
+        try{
+            affectedRows = paperService.updateAbstractById(id, newAbstract);
+        }catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("abstract 修改失败", e);
+        }
 
-        return ResponseObject.returnUpdateObject(affectedRows,"affectedTagRows");
+        return ResponseObject.returnUpdateObject(affectedRows,"affectedAbstractRows");
     }
 
     /**
      * 修改 paper pdf_url
      * @param id        paper 的 id
-     * @param oldUrl    需要修改的旧 url
      * @param newUrl    修改后的新 url
      * @return
      */
     @RequestMapping(value = "/api/edit", method = RequestMethod.POST,
-            params = {"id", "oldUrl", "newUrl"})
-    public Object updateUrlById(double id, String oldUrl, String newUrl) {
+            params = {"id", "newUrl"})
+    public Object updateUrlById(double id, String newUrl) {
         Integer affectedRows = 0;
-        // TODO: 2021/4/6
+        // 出现异常需要事务回滚
+        try{
+            affectedRows = paperService.updateUrlById(id, newUrl);
+        }catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("pdf_url 修改失败", e);
+        }
 
-        return ResponseObject.returnUpdateObject(affectedRows,"affectedTagRows");
+        return ResponseObject.returnUpdateObject(affectedRows,"affectedUrlRows");
     }
 
     /**
      * 修改 paper Date
      * @param id        paper 的 id
-     * @param oldDate    需要修改的旧 date
-     * @param newDate    修改后的新 date
+     * @param newDate    修改后的新 日期
      * @return
      */
     @RequestMapping(value = "/api/edit", method = RequestMethod.POST,
-            params = {"id", "oldDate", "newDate"})
-    public Object updateDateById(double id, String oldDate, String newDate) {
+            params = {"id", "newDate"})
+    public Object updateDateById(double id, String newDate) {
         Integer affectedRows = 0;
-        // TODO: 2021/4/6
+        // 出现异常需要事务回滚
+        try{
+            affectedRows = paperService.updateDateById(id, newDate);
+        }catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error("date 修改失败", e);
+        }
 
-        return ResponseObject.returnUpdateObject(affectedRows,"affectedTagRows");
+        return ResponseObject.returnUpdateObject(affectedRows,"affectedDateRows");
     }
 
     /**
@@ -196,7 +220,7 @@ public class PaperRestController {
         Integer affectedRows = 0;
         // TODO: 2021/4/6
 
-        return ResponseObject.returnDeleteObject(affectedRows,"affectedTagRows");
+        return ResponseObject.returnDeleteObject(affectedRows,"affectedTitleRows");
     }
 
     /**
@@ -217,7 +241,7 @@ public class PaperRestController {
         Integer affectedRows = 0;
         // TODO: 2021/4/6
 
-        return ResponseObject.returnAddObject(affectedRows,"affectedTagRows");
+        return ResponseObject.returnAddObject(affectedRows,"affectedTitleRows");
     }
 
 }
