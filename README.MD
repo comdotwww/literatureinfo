@@ -1420,3 +1420,34 @@
   "affectedPaperRows": 7
 }
 ```
+
+# user
+## 修改密码
+### 基本说明
+| 接口地址 | http://localhost:8080/api/user/password    |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/user/password?username=tom&password=123a |
+
+### 请求参数说明
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| username   | String  | 是  | 用户名 |
+| password   | String  | 是  | 密码 |
+
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| affectedUserRows   | int | 此次修改影响行数 |
+
+### JSON返回示例
+```json
+{
+  "code": 213,
+  "message": "数据添加成功",
+  "affectedUserRows": 1
+}
+```
