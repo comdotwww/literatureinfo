@@ -30,4 +30,6 @@ public interface PaperService {
     Integer deletePaperById(double id);
 
     Integer addPaperById(double id, String title, String abstractContent, String url, String date);
+
+    Double[] selectPaperByNum(Integer limitStart, Integer limitEnd);
 }

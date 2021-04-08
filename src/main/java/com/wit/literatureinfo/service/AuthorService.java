@@ -14,4 +14,6 @@ public interface AuthorService {
     Integer deleteAuthorById(double id, String author);
 
     Integer addAuthorById(double id, String author);
+
+    Author[] selectAuthorByNum(Integer limitStart, Integer limitEnd);
 }

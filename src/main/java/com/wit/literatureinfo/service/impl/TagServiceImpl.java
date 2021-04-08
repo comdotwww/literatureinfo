@@ -14,6 +14,11 @@ public class TagServiceImpl implements TagService {
     private TagDao tagDao;
 
     @Override
+    public Tag[] selectTagByNum(Integer limitStart, Integer limitEnd) {
+        return tagDao.selectTagByNum(limitStart, limitEnd);
+    }
+
+    @Override
     public Tag[] selectTagById(double id) {
         return tagDao.selectTagById(id);
     }
@@ -60,6 +65,8 @@ public class TagServiceImpl implements TagService {
     public Integer addTagById(double id, String tag) {
         return tagDao.addTagById(id, tag);
     }
+
+
 
 
 }

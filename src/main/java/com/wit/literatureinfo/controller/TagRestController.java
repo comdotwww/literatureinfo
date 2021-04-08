@@ -18,6 +18,21 @@ public class TagRestController {
     public static final Logger LOGGER = LogManager.getLogger(TagRestController.class);
 
     /**
+     * 查找所有 tag
+     * @param limitStart
+     * @param limitEnd
+     * @return
+     */
+    @RequestMapping(value = "/api/tag", method = RequestMethod.POST, params = {"limitStart", "limitEnd"})
+    public Object selectTagByNum(Integer limitStart, Integer limitEnd) {
+        Tag[] tags = tagService.selectTagByNum(limitStart, limitEnd);
+        if (tags.length == 0) {
+            tags = null;
+        }
+        return ResponseObject.returnSelectObject(tags, "tag");
+    }
+
+    /**
      * 使用 paper 的 id 精确查找 tag name
      * @param id
      * @return

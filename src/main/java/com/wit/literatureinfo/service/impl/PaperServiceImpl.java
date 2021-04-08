@@ -13,6 +13,11 @@ public class PaperServiceImpl implements PaperService {
     private PaperDao paperDao;
 
     @Override
+    public Double[] selectPaperByNum(Integer limitStart, Integer limitEnd) {
+        return paperDao.selectPaperByNum(limitStart, limitEnd);
+    }
+
+    @Override
     public Paper selectPaperById(double id) {
         return paperDao.selectPaperById(id);
     }
@@ -115,4 +120,5 @@ public class PaperServiceImpl implements PaperService {
     public Integer addPaperById(double id, String title, String abstractContent, String url, String date) {
         return paperDao.addPaperById(id, title, abstractContent, url, date);
     }
+
 }

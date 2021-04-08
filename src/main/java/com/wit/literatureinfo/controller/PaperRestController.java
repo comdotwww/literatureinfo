@@ -27,7 +27,37 @@ public class PaperRestController {
     private TagService tagService;
 
 
-    public static final Logger LOGGER = LogManager.getLogger(TagRestController.class);
+    public static final Logger LOGGER = LogManager.getLogger(PaperRestController.class);
+
+    /**
+     * 查找所有 paper
+     * @return
+     */
+    @RequestMapping(value = "/api/paper", method = RequestMethod.POST, params = {"limitStart", "limitEnd"})
+    public Object selectPaperByNum(Integer limitStart, Integer limitEnd){
+        Double[] papers = paperService.selectPaperByNum(limitStart, limitEnd);
+        if (papers.length == 0) {
+            return ResponseObject.returnSelectObject(null, "paper");
+        }
+
+        Object[] obj = new Object[papers.length];
+        int i = 0;
+
+        for (Double p : papers) {
+            Paper paper = paperService.selectPaperById(p);
+            Author[] authors = authorService.selectAuthorById(p);
+            Tag[] tags = tagService.selectTagById(p);
+
+            Map<String, Object> m = new HashMap<>();
+            m.put("tag", tags);
+            m.put("author", authors);
+            m.put("paper", paper);
+            obj[i] = m;
+            i++;
+        }
+        return ResponseObject.returnSelectObject(obj, "paper");
+
+    }
 
     /**
      * 使用 paper 的 id 精确查找 paper

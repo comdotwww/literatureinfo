@@ -19,6 +19,9 @@ public interface PaperDao {
     })
     List<Paper> selectAll();
 
+    @Select("select `paper_id` from `paper` order by `paper_id` DESC limit #{limitStart},#{limitEnd} ")
+    Double[] selectPaperByNum(Integer limitStart, Integer limitEnd);
+
     /**
      * 使用 paper_id 从 paper 获取 title, abstract_content, pdf_url, date.一般不多于 1 个
      * @param id    paper 的 id
@@ -125,7 +128,7 @@ public interface PaperDao {
             "   ) " +
             ")t " +
             "order by t.date DESC limit #{limitStart},#{limitEnd} ")
-    Double[] selectPaperByTagTitle(String tag, String title, Integer limitStart, Integer limitEnd);
+    Double[] selectPaperByTagTitle(@Param("tag") String tag, @Param("title") String title, @Param("limitStart") Integer limitStart, @Param("limitEnd") Integer limitEnd);
 
     @Select("select * from " +
             "( " +
@@ -134,24 +137,26 @@ public interface PaperDao {
             "   where tag_name = #{tag} " +
             ")t " +
             "order by t.paper_id DESC limit #{limitStart},#{limitEnd} ")
-    Double[] selectPaperByTag(String tag, Integer limitStart, Integer limitEnd);
+    Double[] selectPaperByTag(@Param("tag") String tag, @Param("limitStart") Integer limitStart, @Param("limitEnd") Integer limitEnd);
 
     @Update("UPDATE `paper` SET `title` = #{title} WHERE `paper_id` = #{id} ")
-    Integer updateTitleById(double id, String title);
+    Integer updateTitleById(@Param("id") double id, @Param("title") String title);
 
     @Update("UPDATE `paper` SET `abstract_content` = #{newAbstract} WHERE `paper_id` = #{id} ")
-    Integer updateAbstractById(double id, String newAbstract);
+    Integer updateAbstractById(@Param("id") double id, @Param("newAbstract") String newAbstract);
 
     @Update("UPDATE `paper` SET `pdf_url` = #{newUrl} WHERE `paper_id` = #{id} ")
-    Integer updateUrlById(double id, String newUrl);
+    Integer updateUrlById(@Param("id") double id, @Param("newUrl") String newUrl);
 
     @Update("UPDATE `paper` SET `date` = #{newDate} WHERE `paper_id` = #{id} ")
-    Integer updateDateById(double id, String newDate);
+    Integer updateDateById(@Param("id") double id, @Param("newDate") String newDate);
 
     @Delete("delete from `paper` where `paper_id` = #{id} ")
-    Integer deletePaperById(double id);
+    Integer deletePaperById(@Param("id") double id);
 
     @Insert("insert into paper (paper_id, title, abstract_content, pdf_url, date) " +
             "values (#{id}, #{title}, #{abstractContent}, #{url}, #{date}) ")
-    Integer addPaperById(double id, String title, String abstractContent, String url, String date);
+    Integer addPaperById(@Param("id") double id, @Param("title") String title, @Param("abstractContent") String abstractContent, @Param("url") String url, @Param("date") String date);
+
+
 }

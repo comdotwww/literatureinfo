@@ -13,4 +13,6 @@ public interface TagService {
     Integer deleteTagById(double id, String tag);
 
     Integer addTagById(double id, String tag);
+
+    Tag[] selectTagByNum(Integer limitStart, Integer limitEnd);
 }

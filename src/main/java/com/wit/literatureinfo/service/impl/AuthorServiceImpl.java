@@ -15,6 +15,11 @@ public class AuthorServiceImpl implements AuthorService {
     private AuthorDao authorDao;
 
     @Override
+    public Author[] selectAuthorByNum(Integer limitStart, Integer limitEnd) {
+        return authorDao.selectAuthorByNum(limitStart, limitEnd);
+    }
+
+    @Override
     public Author[] selectAuthorById(double id) {
         return authorDao.selectAuthorById(id);
     }
@@ -61,4 +66,5 @@ public class AuthorServiceImpl implements AuthorService {
     public Integer addAuthorById(double id, String author) {
         return authorDao.addAuthorById(id, author);
     }
+
 }

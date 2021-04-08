@@ -3,6 +3,10 @@
 用户可以在网页上浏览最新的文献，
 另外用户还可以根据论文的题目，作者，标签等查询论文。
 
+##　使用框架或插件
+Spring Boot + Mybatis + Druid + Maven + JPA 以及 Spring Boot Security
+
+
 ![source](source.png)
 
 > 我主要负责后端接口（ API ）的实现
@@ -541,6 +545,267 @@
 | 217  | 数据删除成功      |
 | 218  | 数据删除失败      |
 
+## paper
+### 基本说明
+| 接口地址 | http://localhost:8080/api/paper              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/paper?limitStart=0&limitEnd=4 |
+### 请求参数说明
+> limitStart 与 limitEnd 的意义是将结果分页，例如 0,20
+> 就是将结果的第 1 个到第 20 个取出来
+> limitEnd 可以超过结果数
+
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| limitStart   | int  | 是  | 分页起始行 |
+| limitEnd   | int  | 是  | 分页结束行 |
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| id   | double | paper 的 id |
+| title  | Object | 完整标题   |
+| abstract_content | String | 摘要   |
+| pdf_url | String | PDF链接 |
+| date | String | 日期,paper按日期由新到旧 |
+| author | String | 作者 |
+| tag | String | 标签 |
+### JSON返回示例
+```json
+{
+    "code": 211,
+    "paper": [
+        {
+            "paper": {
+                "id": 2104.00683,
+                "title": "SimPoE: Simulated Character Control for 3D Human Pose Estimation",
+                "abstract_content": "Accurate estimation of 3D human motion from monocular video requires modeling both kinematics (body motion without physical forces) and dynamics (motion with physical forces). To demonstrate this, we present SimPoE, a Simulation-based approach for 3D human Pose Estimation, which integrates image-based kinematic inference and physics-based dynamics modeling. SimPoE learns a policy that takes as input the current-frame pose estimate and the next image frame to control a physically-simulated character to output the next-frame pose estimate. The policy contains a learnable kinematic pose refinement unit that uses 2D keypoints to iteratively refine its kinematic pose estimate of the next frame. Based on this refined kinematic pose, the policy learns to compute dynamics-based control (e.g., joint torques) of the character to advance the current-frame pose estimate to the pose estimate of the next frame. This design couples the kinematic pose refinement unit with the dynamics-based control generation unit, which are learned jointly with reinforcement learning to achieve accurate and physically-plausible pose estimation. Furthermore, we propose a meta-control mechanism that dynamically adjusts the character's dynamics parameters based on the character state to attain more accurate pose estimates. Experiments on large-scale motion datasets demonstrate that our approach establishes the new state of the art in pose accuracy while ensuring physical plausibility.",
+                "pdf_url": "http://arxiv.org/pdf/2104.00683v1.pdf",
+                "date": "2021-04-01 00:00:00"
+            },
+            "author": [
+                {
+                    "name": "Ye Yuan"
+                },
+                {
+                    "name": "Shih-En Wei"
+                },
+                {
+                    "name": "Tomas Simon"
+                },
+                {
+                    "name": "Kris Kitani"
+                },
+                {
+                    "name": "Jason Saragih"
+                }
+            ],
+            "tag": [
+                {
+                    "name": "cs.LG"
+                },
+                {
+                    "name": "cs.CV"
+                }
+            ]
+        },
+        {
+            "paper": {
+                "id": 2104.00682,
+                "title": "Multiview Pseudo-Labeling for Semi-supervised Learning from Video",
+                "abstract_content": "We present a multiview pseudo-labeling approach to video learning, a novel framework that uses complementary views in the form of appearance and motion information for semi-supervised learning in video. The complementary views help obtain more reliable pseudo-labels on unlabeled video, to learn stronger video representations than from purely supervised data. Though our method capitalizes on multiple views, it nonetheless trains a model that is shared across appearance and motion input and thus, by design, incurs no additional computation overhead at inference time. On multiple video recognition datasets, our method substantially outperforms its supervised counterpart, and compares favorably to previous work on standard benchmarks in self-supervised video representation learning.",
+                "pdf_url": "http://arxiv.org/pdf/2104.00682v1.pdf",
+                "date": "2021-04-01 00:00:00"
+            },
+            "author": [
+                {
+                    "name": "Bo Xiong"
+                },
+                {
+                    "name": "Haoqi Fan"
+                },
+                {
+                    "name": "Kristen Grauman"
+                },
+                {
+                    "name": "Christoph Feichtenhofer"
+                }
+            ],
+            "tag": [
+                {
+                    "name": "cs.CV"
+                },
+                {
+                    "name": "cs.AI"
+                },
+                {
+                    "name": "cs.LG"
+                }
+            ]
+        },
+        {
+            "paper": {
+                "id": 2104.00681,
+                "title": "NeuralRecon: Real-Time Coherent 3D Reconstruction from Monocular Video",
+                "abstract_content": "We present a novel framework named NeuralRecon for real-time 3D scene reconstruction from a monocular video. Unlike previous methods that estimate single-view depth maps separately on each key-frame and fuse them later, we propose to directly reconstruct local surfaces represented as sparse TSDF volumes for each video fragment sequentially by a neural network. A learning-based TSDF fusion module based on gated recurrent units is used to guide the network to fuse features from previous fragments. This design allows the network to capture local smoothness prior and global shape prior of 3D surfaces when sequentially reconstructing the surfaces, resulting in accurate, coherent, and real-time surface reconstruction. The experiments on ScanNet and 7-Scenes datasets show that our system outperforms state-of-the-art methods in terms of both accuracy and speed. To the best of our knowledge, this is the first learning-based system that is able to reconstruct dense coherent 3D geometry in real-time.",
+                "pdf_url": "http://arxiv.org/pdf/2104.00681v1.pdf",
+                "date": "2021-04-01 00:00:00"
+            },
+            "author": [
+                {
+                    "name": "Jiaming Sun"
+                },
+                {
+                    "name": "Yiming Xie"
+                },
+                {
+                    "name": "Linghao Chen"
+                },
+                {
+                    "name": "Xiaowei Zhou"
+                },
+                {
+                    "name": "Hujun Bao"
+                }
+            ],
+            "tag": [
+                {
+                    "name": "cs.CV"
+                },
+                {
+                    "name": "cs.RO"
+                }
+            ]
+        },
+        {
+            "paper": {
+                "id": 2104.0068,
+                "title": "LoFTR: Detector-Free Local Feature Matching with Transformers",
+                "abstract_content": "We present a novel method for local image feature matching. Instead of performing image feature detection, description, and matching sequentially, we propose to first establish pixel-wise dense matches at a coarse level and later refine the good matches at a fine level. In contrast to dense methods that use a cost volume to search correspondences, we use self and cross attention layers in Transformer to obtain feature descriptors that are conditioned on both images. The global receptive field provided by Transformer enables our method to produce dense matches in low-texture areas, where feature detectors usually struggle to produce repeatable interest points. The experiments on indoor and outdoor datasets show that LoFTR outperforms state-of-the-art methods by a large margin. LoFTR also ranks first on two public benchmarks of visual localization among the published methods.",
+                "pdf_url": "http://arxiv.org/pdf/2104.00680v1.pdf",
+                "date": "2021-04-01 00:00:00"
+            },
+            "author": [
+                {
+                    "name": "Jiaming Sun"
+                },
+                {
+                    "name": "Zehong Shen"
+                },
+                {
+                    "name": "Yuang Wang"
+                },
+                {
+                    "name": "Hujun Bao"
+                },
+                {
+                    "name": "Xiaowei Zhou"
+                }
+            ],
+            "tag": [
+                {
+                    "name": "cs.CV"
+                },
+                {
+                    "name": "cs.RO"
+                }
+            ]
+        }
+    ],
+    "message": "数据获取成功"
+}
+```
+
+## tag
+### 基本说明
+| 接口地址 | http://localhost:8080/api/tag              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/tag?limitStart=0&limitEnd=4 |
+### 请求参数说明
+> limitStart 与 limitEnd 的意义是将结果分页，例如 0,20
+> 就是将结果的第 1 个到第 20 个取出来
+> limitEnd 可以超过结果数
+
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| limitStart   | int  | 是  | 分页起始行 |
+| limitEnd   | int  | 是  | 分页结束行 |
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| tag | String | 标签 |
+### JSON返回示例
+```json
+{
+    "code": 211,
+    "tag": [
+        {
+            "name": "cs.CV"
+        },
+        {
+            "name": "cs.LG"
+        },
+        {
+            "name": "cs.CL"
+        },
+        {
+            "name": "cs.AI"
+        }
+    ],
+    "message": "数据获取成功"
+}
+```
+
+## author
+### 基本说明
+| 接口地址 | http://localhost:8080/api/author              |
+| -------- | -------------------------------------------- |
+| 返回格式 | JSON                                         |
+| 请求方式 | POST                                         |
+| 请求示例 | http://localhost:8080/api/author?limitStart=0&limitEnd=4 |
+### 请求参数说明
+> limitStart 与 limitEnd 的意义是将结果分页，例如 0,20
+> 就是将结果的第 1 个到第 20 个取出来
+> limitEnd 可以超过结果数
+
+| 名称 | 类型 | 必填 | 说明      |
+| ---- | ---- | ---- | ----------- |
+| limitStart   | int  | 是  | 分页起始行 |
+| limitEnd   | int  | 是  | 分页结束行 |
+### 返回参数说明
+| 名称  | 类型 | 说明   |
+| ------- | ------ | -------- |
+| code    | int    | 状态码 |
+| message | String | 状态信息 |
+| author | String | 作者 |
+### JSON返回示例
+```json
+{
+    "code": 211,
+    "author": [
+        {
+            "name": "Pieter Abbeel"
+        },
+        {
+            "name": "Quoc V. Le"
+        },
+        {
+            "name": "Oriol Vinyals"
+        },
+        {
+            "name": "Kaiming He"
+        }
+    ],
+    "message": "数据获取成功"
+}
+```
 
 ## paper----title
 
@@ -555,7 +820,6 @@
 > limitStart 与 limitEnd 的意义是将结果分页，例如 0,20 
 > 就是将结果的第 1 个到第 20 个取出来
 > limitEnd 可以超过结果数
-
 
 | 名称 | 类型 | 必填 | 说明      |
 | ---- | ---- | ---- | ----------- |
@@ -1425,17 +1689,17 @@
 # user
 ## 修改密码
 ### 基本说明
-| 接口地址 | http://localhost:8080/api/user/password    |
+| 接口地址 | http://localhost:8080/api/resetpwd    |
 | -------- | -------------------------------------------- |
 | 返回格式 | JSON                                         |
 | 请求方式 | POST                                         |
-| 请求示例 | http://localhost:8080/api/user/password?username=tom&password=123a |
+| 请求示例 | http://localhost:8080/api/resetpwd?username=tom&newPassword=123a |
 
 ### 请求参数说明
 | 名称 | 类型 | 必填 | 说明      |
 | ---- | ---- | ---- | ----------- |
 | username   | String  | 是  | 用户名 |
-| password   | String  | 是  | 密码 |
+| newPassword   | String  | 是  | 新密码 |
 
 ### 返回参数说明
 | 名称  | 类型 | 说明   |
@@ -1448,7 +1712,7 @@
 ```json
 {
   "code": 213,
-  "message": "数据添加成功",
+  "message": "数据修改成功",
   "affectedUserRows": 1
 }
 ```

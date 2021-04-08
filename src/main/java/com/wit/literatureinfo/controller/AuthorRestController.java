@@ -18,7 +18,22 @@ public class AuthorRestController {
     @Autowired
     private AuthorService authorService;
 
-    public static final Logger LOGGER = LogManager.getLogger(TagRestController.class);
+    public static final Logger LOGGER = LogManager.getLogger(AuthorRestController.class);
+
+    /**
+     * 查找所有 author
+     * @param limitStart
+     * @param limitEnd
+     * @return
+     */
+    @RequestMapping(value = "/api/author", method = RequestMethod.POST, params = {"limitStart", "limitEnd"})
+    public Object selectAuthorByNum(Integer limitStart, Integer limitEnd) {
+        Author[] authors = authorService.selectAuthorByNum(limitStart, limitEnd);
+        if (authors.length == 0) {
+            authors = null;
+        }
+        return ResponseObject.returnSelectObject(authors, "author");
+    }
 
     /**
      * 使用 paper 的 id 精确查找 author name
