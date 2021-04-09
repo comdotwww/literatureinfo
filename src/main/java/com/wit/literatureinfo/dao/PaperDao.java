@@ -139,21 +139,59 @@ public interface PaperDao {
             "order by t.paper_id DESC limit #{limitStart},#{limitEnd} ")
     Double[] selectPaperByTag(@Param("tag") String tag, @Param("limitStart") Integer limitStart, @Param("limitEnd") Integer limitEnd);
 
+    /**
+     * 修改 paper 标题
+     * @param id
+     * @param title
+     * @return
+     */
     @Update("UPDATE `paper` SET `title` = #{title} WHERE `paper_id` = #{id} ")
     Integer updateTitleById(@Param("id") double id, @Param("title") String title);
 
+    /**
+     * 修改 paper 的 abstract
+     * @param id
+     * @param newAbstract
+     * @return
+     */
     @Update("UPDATE `paper` SET `abstract_content` = #{newAbstract} WHERE `paper_id` = #{id} ")
     Integer updateAbstractById(@Param("id") double id, @Param("newAbstract") String newAbstract);
 
+    /**
+     * 修改 paper 的 PDF 的链接
+     * @param id
+     * @param newUrl
+     * @return
+     */
     @Update("UPDATE `paper` SET `pdf_url` = #{newUrl} WHERE `paper_id` = #{id} ")
     Integer updateUrlById(@Param("id") double id, @Param("newUrl") String newUrl);
 
+    /**
+     * 修改 paper  的 日期
+     * @param id
+     * @param newDate
+     * @return
+     */
     @Update("UPDATE `paper` SET `date` = #{newDate} WHERE `paper_id` = #{id} ")
     Integer updateDateById(@Param("id") double id, @Param("newDate") String newDate);
 
+    /**
+     * 删除 paper
+     * @param id
+     * @return
+     */
     @Delete("delete from `paper` where `paper_id` = #{id} ")
     Integer deletePaperById(@Param("id") double id);
 
+    /**
+     * 添加 paper
+     * @param id
+     * @param title
+     * @param abstractContent
+     * @param url
+     * @param date
+     * @return
+     */
     @Insert("insert into paper (paper_id, title, abstract_content, pdf_url, date) " +
             "values (#{id}, #{title}, #{abstractContent}, #{url}, #{date}) ")
     Integer addPaperById(@Param("id") double id, @Param("title") String title, @Param("abstractContent") String abstractContent, @Param("url") String url, @Param("date") String date);
