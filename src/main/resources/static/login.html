@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="css/all-skins.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <title>vaptcha</title>
+<!--    <style>-->
+<!--        .vaptcha-init-main {-->
+<!--            display: table;-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            background-color: #EEEEEE;-->
+<!--        }-->
+
+<!--        .vaptcha-init-loading {-->
+<!--            display: table-cell;-->
+<!--            vertical-align: middle;-->
+<!--            text-align: center-->
+<!--        }-->
+
+<!--        .vaptcha-init-loading > a {-->
+<!--            display: inline-block;-->
+<!--            width: 18px;-->
+<!--            height: 18px;-->
+<!--            border: none;-->
+<!--        }-->
+
+<!--        .vaptcha-init-loading > a image {-->
+<!--            vertical-align: middle-->
+<!--        }-->
+
+<!--        .vaptcha-init-loading .vaptcha-text {-->
+<!--            font-family: sans-serif;-->
+<!--            font-size: 12px;-->
+<!--            color: #CCCCCC;-->
+<!--            vertical-align: middle-->
+<!--        }-->
+<!--    </style>-->
+
+</head>
+<body class="hold-transition login-page">
+<!-- 点击式按钮建议高度介于36px与46px  -->
+<!-- 嵌入式仅需设置宽度，高度根据宽度自适应，最小宽度为200px -->
+<div id="rrapp" class="login-box" v-cloak>
+    <div class="login-logo">
+        <b>Acadmic Hub</b>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg Login">Login</p>
+        <div class="form-group has-feedback">
+            <input type="text" class="form-control" v-model="loginForm.username" placeholder="Username">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+            <input type="password" class="form-control" v-model="loginForm.password" placeholder="Password">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="checkbox checking">
+                    <div id="vaptchaContainer" style="width: 230px;height: 36px;">
+                        <!--vaptcha-container是用来引入VAPTCHA的容器，下面代码为预加载动画，仅供参考-->
+                        <div class="vaptcha-init-main">
+                            <div class="vaptcha-init-loading">
+                                <a href="/" target="_blank">
+                                    <img src="https://cdn.vaptcha.com/vaptcha-loading.gif" alt="loading"/>
+                                </a>
+                                <span class="vaptcha-text">Vaptcha启动中...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-4 buttonchange">
+                <button type="button" class="btn btn-primary btn-block btn-flat" @click="login">Sign In</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div id="vaptchaContainer" style="width: 230px;height: 36px;">-->
+<!--    &lt;!&ndash;vaptcha-container是用来引入VAPTCHA的容器，下面代码为预加载动画，仅供参考&ndash;&gt;-->
+<!--    <div class="vaptcha-init-main">-->
+<!--        <div class="vaptcha-init-loading">-->
+<!--            <a href="/" target="_blank">-->
+<!--                <img src="https://cdn.vaptcha.com/vaptcha-loading.gif" alt="loading"/>-->
+<!--            </a>-->
+<!--            <span class="vaptcha-text">Vaptcha启动中...</span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<script src="libs/jquery.min.js"></script>
+<script src="libs/vue.min.js"></script>
+<script src="libs/bootstrap.min.js"></script>
+<script src="libs/jquery.slimscroll.min.js"></script>
+<script src="ibs/fastclick.min.js"></script>
+<script src="libs/app.js"></script>
+<script src="https://v.vaptcha.com/v3.js"></script>
+<script src="https://r.vaptcha.com/public/js/jquery-3.2.1.min.js"></script>
+<script>
+    var flag = false;
+    var vm = new Vue({
+        el:'#rrapp',
+        data:{
+            loginForm:{
+                username:'',
+                password:''
+            },
+        },
+        beforeCreate: function(){
+            if(self != top){
+                top.location.href = self.location.href;
+            }
+        },
+        methods: {
+            login: function (event) {
+                if(flag == false){
+                    alert("请先点击验证码开启验证");
+                }else{
+                    if(this.loginForm.username===''||this.loginForm.password===''){
+                        alert("请重新输入")
+                    }
+
+                    var data={
+                        "username":this.loginForm.username,
+                        "password":this.loginForm.password
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "../api/login.do",//规定把请求发送到哪个URL
+                        data: JSON.stringify(data),
+                        contentType: "application/json",
+                        dataType: "json",
+                        success: function(result){
+                            if(result.code == 0){//登录成功
+                                window.location.href ='index.html';
+                            }else{
+                                alert("用户名或密码错误!");
+                                location.reload();
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    });
+
+    vaptcha({
+        vid: '5f5aebcf6b50b90a08399318', // 必填
+        type: 'click', // 必填 显示类型 点击式
+        container: '#vaptchaContainer', // 嵌入式、点击式必填 容器，可为Element 或者 selector
+        scene: 1, //不填默认为0
+        offline_server: 'http://localhost:8080/offline', //离线模式服务端地址 必填
+        mode: 'offline', // 加入此参数直接进入离线模式，用于调试，上线请删除
+        //可选参数
+        //lang: 'zh-CN', // 语言 默认zh-CN,可选值zh-CN,en,zh-TW
+        //https: false, // 使用https 默认false
+        //style: 'dark' //按钮样式 默认dark，可选值 dark,light
+        //color: '#57ABFF' //按钮颜色 默认值#57ABFF
+    }).then(function (vaptchaObj) {
+        obj = vaptchaObj;//将VAPTCHA验证实例保存到局部变量中
+        vaptchaObj.render();// 调用验证实例 vaptchaObj 的 render 方法加载验证按钮
+
+        //获取token的方式一:
+        //vaptchaObj.renderTokenInput('.login-form')//以form的方式提交数据时，使用此函数向表单添加token值
+
+        //获取token的方式二:
+        vaptchaObj.listen('pass', function () {
+            // 验证成功进行后续操作
+            // 登录注册并二次验证
+            var data = {
+                //表单数据
+                token: vaptchaObj.getToken()
+            };
+            console.log("token: " + data.token);
+            $.ajax({
+                type: 'POST',
+                // url: "login",
+                url: "http://localhost:8080/verify",
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: JSON.stringify(data),
+                success: function (r) {
+                    if (r.code !== 200) {
+                        alert("二次验证失败");
+                        vaptchaObj.reset(); //重置验证码
+                    } else {
+                        alert("二次验证成功");
+                        flag=true;
+                    }
+                },
+                contentType: "application/json;charset=UTF-8"
+            });
+        });
+        //关闭验证弹窗时触发
+        vaptchaObj.listen('close', function () {
+            //验证弹窗关闭触发
+        })
+    })
+</script>
+</body>
+</html>
