@@ -3,13 +3,13 @@
 用户可以在网页上浏览最新的文献，
 另外用户还可以根据论文的题目，作者，标签等查询论文。
 
-##　使用框架或插件
+## 使用框架或插件
 Spring Boot + Mybatis + Druid + Maven + JPA 以及 Spring Boot Security
 
 
-![source](source.png)
+![source](https://cdn.jsdelivr.net/gh/comdotwww/literatureinfo@latest/source.png)
 
-> 我主要负责后端接口（ API ）的实现
+> 我主要负责后端接口（ API ）以及登录验证的实现
 
 # 数据库设计
 ## paper表
