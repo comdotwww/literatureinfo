@@ -1,0 +1,167 @@
+/* #PaperList-Calender{
+    border: 0px;
+}
+#PaperList-Calender:active {
+    border: 0px;
+} */
+
+.navbar-default{
+    background-color: white;
+}
+
+.PaperList {
+    background-color: white;
+}
+
+body{
+    background-color: #f6f6f6;
+}
+
+#navbar-brand{
+    font-family: "宋体","仿宋",sans-serif;
+}
+
+#Paper-tag:focus {
+    border: 0 none !important;
+    outline: none !important;
+}
+
+/* .Paper-search-btn{
+    border: 1px solid #4f4f48;
+} */
+
+.Paper-search{
+    border-left: 2px;
+}
+
+/* .form-control {
+    border: 1px solid #4f4f48;
+} */
+
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+    margin-left: 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.pagination>li>a, .pagination>li>span {
+    color: #4f4f48;
+    border: 1px solid #4f4f48;
+}
+
+#navbar-brand{
+    color: #7030A0;
+    text-align: right;
+}
+
+.PaperCard-author{
+	margin-bottom: 8px;
+}
+
+.thumbnail{
+    border: 2px solid #ddd;
+}
+
+.table-bordered{
+    border: 2px solid #ddd !important;
+}
+
+a,a:hover {
+	text-decoration: none; /* 去除默认的下划线 */
+	outline: none;	/* 去除旧版浏览器的点击后的外虚线框 */
+	color: #000;	/* 去除默认的颜色和点击后变化的颜色 */ 
+}
+
+#Paper-tag{
+	/* background-color: #d7c1e9; */
+    background-color: #f0f0f0;
+    border: 0px;
+}
+
+.PaperCard-tags-arr{
+	float: right;
+}
+
+#PaperCard{
+	padding: 15px;
+}
+
+.PaperCard-title{
+	font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.PaperCard-time,.PaperCard-author{
+	font-size: 14px;
+    color: #888;
+}
+.PaperCard-time{
+	font-weight: bolder;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #c8a0e7;
+    border-color: #381355;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #c8a0e7;
+    border-color: #381355;
+}
+
+.layui-laydate .layui-this {
+    background-color: #c8a0e7!important;
+    color: #fff!important;
+}
+
+#PaperList-Calender-container{
+    margin-top: 26px;
+	float: right;
+}
+
+#PaperList-Calender{
+	text-align: center;
+} 
+
+#PaperList-content{
+    margin-top: 15px;
+}
+
+#navbar-brand{
+    text-shadow: black 5px;
+}
+
+.about-us{
+    text-indent: 20px;
+    font-family: "宋体","仿宋",sans-serif;
+    padding: 10px;
+}
+
+.developer{
+    font-family: "宋体","仿宋",sans-serif;
+    text-align: left;
+    padding-left: 25px;
+}
+
+
+.navbar-form{
+    margin-left: 100px;
+}
+
+.form-control.Paper-select{
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+}
+
+#Paper-tag{
+    margin-left: 5px;
+}
